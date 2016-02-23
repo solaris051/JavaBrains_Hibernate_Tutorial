@@ -16,20 +16,22 @@ public class HibernateTest {
 		user.setUserId(1);
 		user.setUserName("second User");
 		
-		Address addr = new Address();
-		addr.setCity("New York");
-		addr.setState("NY");
-		addr.setStreet("5th ave.");
-		addr.setZipCode("1123");
-		user.setHomeAddress(addr);
+		Address addr1 = new Address();
+		addr1.setCity("New York");
+		addr1.setState("NY");
+		addr1.setStreet("5th ave.");
+		addr1.setZipCode("1123");
 		
 		Address workAddr = new Address();
-		addr.setCity("Vienna");
-		addr.setState("W");
-		addr.setStreet("Hebbelpl. 5");
-		addr.setZipCode("1100");
-		user.setWorkAddress(workAddr);
-
+		workAddr.setCity("Vienna");
+		workAddr.setState("W");
+		workAddr.setStreet("Hebbelpl. 5");
+		workAddr.setZipCode("1100");
+		
+		user.getListOfAddresses().add(addr1);
+		user.getListOfAddresses().add(workAddr);
+		
+		// HIBERNATE STUFF
 		
 		Configuration conf = new Configuration().configure();
 		SessionFactory factory = conf.buildSessionFactory();
