@@ -6,13 +6,22 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import ua.dev.hibernate.dto.Address;
 import ua.dev.hibernate.dto.UserDetails;
 
 public class HibernateTest {
 	public static void main(String[] args) {
+		
 		UserDetails user = new UserDetails();
 		user.setUserId(1);
 		user.setUserName("second User");
+		
+		Address addr = new Address();
+		addr.setCity("New York");
+		addr.setState("NY");
+		addr.setStreet("5th ave.");
+		addr.setZipCode("1123");
+		user.setAddress(addr);
 
 		
 		Configuration conf = new Configuration().configure();
@@ -26,6 +35,6 @@ public class HibernateTest {
 		session.close();
 
 		
-		System.out.println(user.getDescription());
+//		System.out.println(user.getDescription());
 	}
 }
