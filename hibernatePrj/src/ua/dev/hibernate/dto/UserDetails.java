@@ -2,6 +2,8 @@ package ua.dev.hibernate.dto;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -24,7 +26,16 @@ public class UserDetails {
 	private String userName;
 	
 	@Embedded
-	private Address address;
+	@AttributeOverrides({
+			@AttributeOverride(name = "street", column = @Column(name = "HOME_STREET_NAME")),
+			@AttributeOverride(name = "city", column = @Column(name = "HOME_CITY_NAME")),
+			@AttributeOverride(name = "zipCode", column = @Column(name = "HOME_ZIP_CODE")),
+			@AttributeOverride(name = "state", column = @Column(name = "HOME_STATE_NAME"))
+	})
+	private Address homeAddress;
+	
+	@Embedded
+	private Address workAddress;
 	
 //	getters and setters //
 	
@@ -40,11 +51,17 @@ public class UserDetails {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Address getAddress() {
-		return address;
+	public Address getHomeAddress() {
+		return homeAddress;
 	}
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
+	}
+	public Address getWorkAddress() {
+		return workAddress;
+	}
+	public void setWorkAddress(Address workAddress) {
+		this.workAddress = workAddress;
 	}
 
 }

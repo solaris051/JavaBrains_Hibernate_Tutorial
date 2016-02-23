@@ -21,7 +21,14 @@ public class HibernateTest {
 		addr.setState("NY");
 		addr.setStreet("5th ave.");
 		addr.setZipCode("1123");
-		user.setAddress(addr);
+		user.setHomeAddress(addr);
+		
+		Address workAddr = new Address();
+		addr.setCity("Vienna");
+		addr.setState("W");
+		addr.setStreet("Hebbelpl. 5");
+		addr.setZipCode("1100");
+		user.setWorkAddress(workAddr);
 
 		
 		Configuration conf = new Configuration().configure();
