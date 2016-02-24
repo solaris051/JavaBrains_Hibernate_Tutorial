@@ -11,7 +11,7 @@ public class HibernateTest {
 	public static void main(String[] args) {
 		
 		UserDetails user = new UserDetails();
-		user.setUserId(2);
+		user.setUserId(1);
 		user.setUserName("second User");
 		
 		Address addr1 = new Address();
@@ -32,9 +32,9 @@ public class HibernateTest {
 		// HIBERNATE STUFF
 		
 		Configuration conf = new Configuration().configure();
-		SessionFactory factory = conf.buildSessionFactory();
+		SessionFactory sessionFactory = conf.buildSessionFactory();
 		
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		
 		session.beginTransaction();
 		session.save(user);
@@ -42,6 +42,13 @@ public class HibernateTest {
 		session.close();
 
 		
-//		System.out.println(user.getDescription());
+//		retirive the collection of Addresses
+		user = null;
+		
+		session = sessionFactory.openSession();
+		user = (UserDetails) session.get(UserDetails.class, 1);
+		session.close();
+		System.out.println(user.getListOfAddresses().size());
+//		session.close();
 	}
 }
