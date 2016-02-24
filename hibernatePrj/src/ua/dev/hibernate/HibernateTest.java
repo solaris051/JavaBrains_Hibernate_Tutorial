@@ -1,7 +1,5 @@
 package ua.dev.hibernate;
 
-import java.util.Date;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -13,7 +11,7 @@ public class HibernateTest {
 	public static void main(String[] args) {
 		
 		UserDetails user = new UserDetails();
-		user.setUserId(1);
+		user.setUserId(2);
 		user.setUserName("second User");
 		
 		Address addr1 = new Address();
