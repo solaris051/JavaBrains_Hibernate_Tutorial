@@ -6,28 +6,18 @@ import org.hibernate.cfg.Configuration;
 
 import ua.dev.hibernate.dto.Address;
 import ua.dev.hibernate.dto.UserDetails;
+import ua.dev.hibernate.dto.Vehicle;
 
 public class HibernateTest {
 	public static void main(String[] args) {
 		
 		UserDetails user = new UserDetails();
-		user.setUserId(1);
 		user.setUserName("second User");
 		
-		Address addr1 = new Address();
-		addr1.setCity("New York");
-		addr1.setState("NY");
-		addr1.setStreet("5th ave.");
-		addr1.setZipCode("1123");
+		Vehicle vehicle = new Vehicle();
+		vehicle.setVehicleName("car");
 		
-		Address workAddr = new Address();
-		workAddr.setCity("Vienna");
-		workAddr.setState("W");
-		workAddr.setStreet("Hebbelpl. 5");
-		workAddr.setZipCode("1100");
-		
-		user.getListOfAddresses().add(addr1);
-		user.getListOfAddresses().add(workAddr);
+		user.setVehicle(vehicle);
 		
 		// HIBERNATE STUFF
 		
@@ -37,7 +27,10 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		
 		session.beginTransaction();
+		
 		session.save(user);
+		session.save(vehicle);
+		
 		session.getTransaction().commit();
 		session.close();
 
@@ -48,7 +41,5 @@ public class HibernateTest {
 		session = sessionFactory.openSession();
 		user = (UserDetails) session.get(UserDetails.class, 1);
 		session.close();
-		System.out.println(user.getListOfAddresses().size());
-//		session.close();
 	}
 }

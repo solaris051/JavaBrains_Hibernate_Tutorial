@@ -30,6 +30,7 @@
         <property name="hbm2ddl.auto">create</property>
 
 		<mapping class="ua.dev.hibernate.dto.UserDetails"/>
+		<mapping class="ua.dev.hibernate.dto.Vehicle"/>
 		
 	</session-factory>
 </hibernate-configuration>
