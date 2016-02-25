@@ -22,21 +22,16 @@ public class HibernateTest {
 		
 		user.getVehicle().add(vehicle1);
 		user.getVehicle().add(vehicle2);
-		vehicle1.getUsers().add(user);
-		vehicle2.getUsers().add(user);
+
 		// HIBERNATE STUFF
 		
 		Configuration conf = new Configuration().configure();
 		SessionFactory sessionFactory = conf.buildSessionFactory();
 		
 		Session session = sessionFactory.openSession();
-		
 		session.beginTransaction();
 		
 		session.save(user);
-		
-		session.save(vehicle1);
-		session.save(vehicle2);
 		
 		session.getTransaction().commit();
 		session.close();
@@ -48,5 +43,7 @@ public class HibernateTest {
 		session = sessionFactory.openSession();
 		user = (UserDetails) session.get(UserDetails.class, 1);
 		session.close();
+		
+		sessionFactory.close();
 	}
 }
