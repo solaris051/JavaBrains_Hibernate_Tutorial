@@ -14,11 +14,16 @@ public class HibernateTest {
 		UserDetails user = new UserDetails();
 		user.setUserName("second User");
 		
-		Vehicle vehicle = new Vehicle();
-		vehicle.setVehicleName("car");
+		Vehicle vehicle1 = new Vehicle();
+		vehicle1.setVehicleName("car");
 		
-		user.setVehicle(vehicle);
+		Vehicle vehicle2 = new Vehicle();
+		vehicle2.setVehicleName("Jeep");
 		
+		user.getVehicles().add(vehicle1);
+		user.getVehicles().add(vehicle2);
+		vehicle1.setUser(user);
+		vehicle2.setUser(user);
 		// HIBERNATE STUFF
 		
 		Configuration conf = new Configuration().configure();
@@ -29,7 +34,9 @@ public class HibernateTest {
 		session.beginTransaction();
 		
 		session.save(user);
-		session.save(vehicle);
+		
+		session.save(vehicle1);
+		session.save(vehicle2);
 		
 		session.getTransaction().commit();
 		session.close();
