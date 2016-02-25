@@ -1,10 +1,14 @@
 package ua.dev.hibernate.dto;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +20,8 @@ public class Vehicle {
 	
 	private String vehicleName;
 	
-	@ManyToOne
-	private UserDetails user;
+	@ManyToMany(mappedBy="vehicle")
+	private List<UserDetails> users = new ArrayList<UserDetails>();
 	
 	public int getVehicleId() {
 		return vehicleId;
@@ -31,10 +35,10 @@ public class Vehicle {
 	public void setVehicleName(String vehicleName) {
 		this.vehicleName = vehicleName;
 	}
-	public UserDetails getUser() {
-		return user;
+	public Collection<UserDetails> getUsers() {
+		return users;
 	}
-	public void setUser(UserDetails user) {
-		this.user = user;
+	public void setUser(List<UserDetails> users) {
+		this.users = users;
 	}
 }

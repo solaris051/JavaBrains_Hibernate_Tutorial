@@ -20,10 +20,10 @@ public class HibernateTest {
 		Vehicle vehicle2 = new Vehicle();
 		vehicle2.setVehicleName("Jeep");
 		
-		user.getVehicles().add(vehicle1);
-		user.getVehicles().add(vehicle2);
-		vehicle1.setUser(user);
-		vehicle2.setUser(user);
+		user.getVehicle().add(vehicle1);
+		user.getVehicle().add(vehicle2);
+		vehicle1.getUsers().add(user);
+		vehicle2.getUsers().add(user);
 		// HIBERNATE STUFF
 		
 		Configuration conf = new Configuration().configure();
